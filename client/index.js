@@ -17,7 +17,8 @@ var start = () => {
 };
 
 var startRTC = () => {
-    var ws = new WebSocket(`ws://${location.host}/connect`);
+    var wsProto = window.location.protocol === "https:" ? "wss" : "ws";
+    var ws = new WebSocket(`${wsProto}://${location.host}/connect`);
     var peerConnection;
 
     var resetPeerConnection = () => {
