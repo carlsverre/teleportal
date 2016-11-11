@@ -6,6 +6,11 @@
         <script type="text/javascript" src="assets/bundle.js"></script>
     </head>
     <body>
+        <div id="channel-select">
+            <button class="channel-btn" data-channel="seattle">Seattle</button>
+            <button class="channel-btn" data-channel="prague">Prague</button>
+            <span>Current channel: <span id="channel">No channel</span></span>
+        </div>
         <video id="local" autoplay="true" muted="true"></video>
         <video id="remote" autoplay></video>
     </body>

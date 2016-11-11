@@ -5,6 +5,12 @@ html, body {
     padding: 0;
 }
 
+#channel-select {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+}
+
 video#remote {
     width: 100%;
     height: 100%;
