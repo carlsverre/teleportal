@@ -1,0 +1,19 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+video#remote {
+    width: 100%;
+    height: 100%;
+}
+
+video#local {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    right: 10px;
+    bottom: 10px;
+}
