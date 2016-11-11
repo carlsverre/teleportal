@@ -1,7 +1,22 @@
 const express = require("express");
-const app = express();
+const https = require("https");
+const http = require("http");
+const fs = require("fs");
+const expressWS = require("express-ws");
 
-require("express-ws")(app);
+const app = express();
+var server;
+
+if (process.env.NODE_ENV === "production") {
+    server = https.createServer({
+        key: fs.readFileSync("/ssl/host.key", "utf8"),
+        cert: fs.readFileSync("/ssl/host.cert", "utf8")
+    }, app);
+} else {
+    server = http.createServer(app);
+}
+
+expressWS(app, server);
 
 app.use("/assets", express.static("assets"));
 app.use("/", express.static("views"));
@@ -94,4 +109,4 @@ app.ws("/connect", function(ws) {
     });
 });
 
-app.listen(3000);
+server.listen(3000);
