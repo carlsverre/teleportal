@@ -5,6 +5,11 @@ set -e
 mkdir -p /ssl
 
 if [[ ! -e /ssl/host.key ]]; then
+    if [[ -z "$DOMAIN" ]]; then
+        echo "Must set the DOMAIN env variable for the self-signed certificate."
+        exit 1
+    fi
+
     openssl genrsa 4096 > /ssl/host.key
     openssl req \
         -new \
@@ -12,7 +17,7 @@ if [[ ! -e /ssl/host.key ]]; then
         -days 365 \
         -nodes \
         -x509 \
-        -subj "/C=US/O=carlsverre/CN=teleportal.memcompute.com" \
+        -subj "/O=teleportal/CN=$DOMAIN" \
         -keyout /ssl/host.key \
         -out /ssl/host.cert
 
